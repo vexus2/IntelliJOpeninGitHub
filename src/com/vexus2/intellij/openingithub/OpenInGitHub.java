@@ -55,8 +55,8 @@ public class OpenInGitHub extends AnAction {
                     Matcher matcher = pattern.matcher(line);
 
                     if (matcher.find()) {
-                        group = matcher.group(2);
-                        project = matcher.group(3);
+                        group = (matcher.group(2) != null) ? matcher.group(2) : matcher.group(4);
+                        project = (matcher.group(3) != null) ? matcher.group(3) : matcher.group(5);
                         is_set_github = true;
                         break;
                     }
@@ -93,7 +93,7 @@ public class OpenInGitHub extends AnAction {
             cursor_line = "#L" + selectionModel.getSelectionStartPosition().getLine();
         }
 
-        String request = GITHUB_URL + group + "/" + project + "/blob/tree" + head + "/" + current_file_name + cursor_line;
+        String request = GITHUB_URL + group + "/" + project + "/blob" + head + "/" + current_file_name + cursor_line;
 
         String[] command = new String[]{ExecUtil.getOpenCommandPath()};
         try {

@@ -1,17 +1,15 @@
 <idea-plugin version="2">
   <id>com.vexus2.intellij.openingithub</id>
   <name>Open in GitHub</name>
-  <version>1.0</version>
+  <version>1.0.1</version>
   <vendor email="hikaru.tooyama@gmail.com" url="http://twitter.com/vexus2">Vexus2</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <small>most HTML tags may be used</small>
+      Open source code into GitHub with default browser.
       ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <small>most HTML tags may be used</small>
+      fixed bug.
       ]]>
   </change-notes>
 
