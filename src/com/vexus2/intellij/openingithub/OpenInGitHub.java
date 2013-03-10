@@ -3,9 +3,11 @@ package com.vexus2.intellij.openingithub;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.GeneralCommandLine;
 import com.intellij.execution.util.ExecUtil;
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
+import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.DataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
@@ -28,7 +30,7 @@ public class OpenInGitHub extends AnAction {
 
     public void actionPerformed(AnActionEvent e) {
 
-        Project p = ProjectManager.getInstance().getOpenProjects()[0];
+        Project p = e.getProject();
 
         VirtualFile[] selectedFiles = FileEditorManager.getInstance(p).getSelectedFiles();
 
@@ -63,6 +65,8 @@ public class OpenInGitHub extends AnAction {
                 }
             }
 
+            Notifications.Bus.notify(new Notification("test", "Success", "group = " + group + ", project = " + project, NotificationType.INFORMATION));
+
             while ((line = br_head.readLine()) != null) {
                 Pattern pattern = Pattern.compile(".*?heads(.*?)$");
                 Matcher matcher = pattern.matcher(line);
@@ -73,17 +77,17 @@ public class OpenInGitHub extends AnAction {
 
         } catch (Exception exception) {
             // .git/config is empty or not found
-            // TODO: display notification balloon
+            Notifications.Bus.notify(new Notification("Open in GitHub", "Error", "Can not open [.git/config] file.", NotificationType.INFORMATION));
             return;
         }
 
         if (!is_set_github) {
             // repository is not management in github
-            // TODO:display notification balloon
+            Notifications.Bus.notify(new Notification("Open in GitHub", "Error", "Repository is not management in GitHub.", NotificationType.INFORMATION));
             return;
         }
 
-        Editor editor = (Editor) DataKeys.EDITOR.getData(e.getDataContext());
+        Editor editor = (Editor) PlatformDataKeys.EDITOR.getData(e.getDataContext());
         SelectionModel selectionModel = editor.getSelectionModel();
 
 
@@ -96,6 +100,7 @@ public class OpenInGitHub extends AnAction {
         String request = GITHUB_URL + group + "/" + project + "/blob" + head + "/" + current_file_name + cursor_line;
 
         String[] command = new String[]{ExecUtil.getOpenCommandPath()};
+
         try {
             final GeneralCommandLine commandLine = new GeneralCommandLine(command);
             commandLine.addParameter(request);
@@ -103,6 +108,7 @@ public class OpenInGitHub extends AnAction {
 
         } catch (ExecutionException exception) {
             // TODO:display notification balloon
+            Notifications.Bus.notify(new Notification("Open in GitHub", "Error", "Error: " + exception.getMessage(), NotificationType.INFORMATION));
             return;
         }
     }
