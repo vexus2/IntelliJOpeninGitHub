@@ -64,8 +64,6 @@ public class OpenInGitHub extends AnAction {
                 }
             }
 
-            Notifications.Bus.notify(new Notification("test", "Success", "group = " + group + ", project = " + project, NotificationType.INFORMATION));
-
             while ((line = br_head.readLine()) != null) {
                 Pattern pattern = Pattern.compile(".*?heads(.*?)$");
                 Matcher matcher = pattern.matcher(line);
