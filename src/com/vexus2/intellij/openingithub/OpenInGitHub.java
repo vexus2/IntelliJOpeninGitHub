@@ -74,13 +74,13 @@ public class OpenInGitHub extends AnAction {
 
         } catch (Exception exception) {
             // .git/config is empty or not found
-            Notifications.Bus.notify(new Notification("Open in GitHub", "Error", "Can not open [.git/config] file.", NotificationType.INFORMATION));
+            Notifications.Bus.notify(new Notification("Open in GitHub", "Error", "Can not open [.git/config] file.", NotificationType.ERROR));
             return;
         }
 
         if (!is_set_github) {
             // repository is not management in github
-            Notifications.Bus.notify(new Notification("Open in GitHub", "Error", "Repository is not management in GitHub.", NotificationType.INFORMATION));
+            Notifications.Bus.notify(new Notification("Open in GitHub", "Error", "Repository is not management in GitHub.", NotificationType.ERROR));
             return;
         }
 
@@ -105,7 +105,7 @@ public class OpenInGitHub extends AnAction {
 
         } catch (ExecutionException exception) {
             // TODO:display notification balloon
-            Notifications.Bus.notify(new Notification("Open in GitHub", "Error", "Error: " + exception.getMessage(), NotificationType.INFORMATION));
+            Notifications.Bus.notify(new Notification("Open in GitHub", "Error", "Error: " + exception.getMessage(), NotificationType.ERROR));
             return;
         }
     }
