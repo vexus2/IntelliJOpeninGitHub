@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class OpenInGitHub extends AnAction {
 
-    public static final String GITHUB_URL = "https://www.github.com/";
+    public static final String GITHUB_URL = "https://github.com/";
 
     public void update(AnActionEvent e) {
         e.getPresentation().setEnabled(PlatformDataKeys.EDITOR.getData(e.getDataContext()) != null);

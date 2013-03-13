@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.vexus2.intellij.openingithub</id>
   <name>Open in GitHub</name>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <vendor email="hikaru.tooyama@gmail.com" url="http://twitter.com/vexus2">Vexus2</vendor>
 
   <description><![CDATA[
@@ -9,6 +9,9 @@
       ]]></description>
 
   <change-notes><![CDATA[
+      version 1.0.4
+      remove [www] when opening GitHub.
+
       version 1.0.3
       fixed bug.
       ]]>
