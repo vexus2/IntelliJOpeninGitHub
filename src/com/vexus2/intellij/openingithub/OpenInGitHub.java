@@ -89,9 +89,9 @@ public class OpenInGitHub extends AnAction {
 
 
         if (selectionModel.hasSelection()) {
-            cursor_line = "#L" + selectionModel.getSelectionStartPosition().getLine() + "-L" + selectionModel.getSelectionEndPosition().getLine();
+            cursor_line = "#L" + (selectionModel.getSelectionStartPosition().getLine() - 1) + "-L" + (selectionModel.getSelectionEndPosition().getLine() - 1);
         } else {
-            cursor_line = "#L" + selectionModel.getSelectionStartPosition().getLine();
+            cursor_line = "#L" + (selectionModel.getSelectionStartPosition().getLine() - 1);
         }
 
         String request = GITHUB_URL + group + "/" + project + "/blob" + head + "/" + current_file_name + cursor_line;
@@ -104,7 +104,6 @@ public class OpenInGitHub extends AnAction {
             commandLine.createProcess();
 
         } catch (ExecutionException exception) {
-            // TODO:display notification balloon
             Notifications.Bus.notify(new Notification("Open in GitHub", "Error", "Error: " + exception.getMessage(), NotificationType.ERROR));
             return;
         }

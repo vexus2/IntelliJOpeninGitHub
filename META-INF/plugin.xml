@@ -9,11 +9,14 @@
       ]]></description>
 
   <change-notes><![CDATA[
-      version 1.0.4
-      remove [www] when opening GitHub.
+      version 1.0.5<br>
+      modified selection line.<br>
 
-      version 1.0.3
-      fixed bug.
+      version 1.0.4<br>
+      remove [www] when opening GitHub.<br>
+
+      version 1.0.3<br>
+      fixed bug.<br>
       ]]>
   </change-notes>
 
