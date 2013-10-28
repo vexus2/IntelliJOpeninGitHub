@@ -12,11 +12,11 @@ import com.intellij.openapi.actionSystem.DataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
-import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,7 +32,7 @@ public class OpenInGitHub extends AnAction {
 
         Project p = e.getProject();
 
-        VirtualFile[] selectedFiles = FileEditorManager.getInstance(p).getSelectedFiles();
+//        VirtualFile[] selectedFiles = FileEditorManager.getInstance(p).getSelectedFiles();
         VirtualFile current_file = (VirtualFile) DataKeys.VIRTUAL_FILE.getData(e.getDataContext());
 
 //        String current_file_name = selectedFiles[0].toString().replace("file://" + p.getBasePath() + "/", "");
@@ -92,9 +92,9 @@ public class OpenInGitHub extends AnAction {
 
 
         if (selectionModel.hasSelection()) {
-            cursor_line = "#L" + (selectionModel.getSelectionStartPosition().getLine() - 1) + "-L" + (selectionModel.getSelectionEndPosition().getLine() - 1);
+            cursor_line = "#L" + (selectionModel.getSelectionStartPosition().getLine() + 1) + "-L" + (selectionModel.getSelectionEndPosition().getLine() + 1);
         } else {
-            cursor_line = "#L" + (selectionModel.getSelectionStartPosition().getLine() - 1);
+            cursor_line = "#L" + (selectionModel.getSelectionStartPosition().getLine() + 1);
         }
 
         String request = GITHUB_URL + group + "/" + project + "/blob" + head + "/" + current_file_name + cursor_line;

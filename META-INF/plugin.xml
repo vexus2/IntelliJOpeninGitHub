@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>com.vexus2.intellij.openingithub</id>
   <name>Open in GitHub</name>
-  <version>1.0.5</version>
+  <version>1.0.6</version>
   <vendor email="hikaru.tooyama@gmail.com" url="http://twitter.com/vexus2">Vexus2</vendor>
 
   <description><![CDATA[
@@ -9,6 +9,9 @@
       ]]></description>
 
   <change-notes><![CDATA[
+      version 1.0.6<br>
+      fixed bug.<br>
+
       version 1.0.5<br>
       modified selection line bug.<br>
 
@@ -24,6 +27,7 @@
   <idea-version since-build="107.105"/>
 
   <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.platform</depends>
 
   <application-components>
     <!-- Add your application components here -->
