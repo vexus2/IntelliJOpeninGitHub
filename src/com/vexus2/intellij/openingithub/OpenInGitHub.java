@@ -8,7 +8,6 @@ import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.DataKeys;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
@@ -33,7 +32,7 @@ public class OpenInGitHub extends AnAction {
         Project p = e.getProject();
 
 //        VirtualFile[] selectedFiles = FileEditorManager.getInstance(p).getSelectedFiles();
-        VirtualFile current_file = (VirtualFile) DataKeys.VIRTUAL_FILE.getData(e.getDataContext());
+        VirtualFile current_file = (VirtualFile) PlatformDataKeys.VIRTUAL_FILE.getData(e.getDataContext());
 
 //        String current_file_name = selectedFiles[0].toString().replace("file://" + p.getBasePath() + "/", "");
         String current_file_name = current_file.toString().replace("file://" + p.getBasePath() + "/", "");
